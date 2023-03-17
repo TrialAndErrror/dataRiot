@@ -6,7 +6,11 @@ from riotwatcher import LolWatcher, ApiError
 from dotenv import load_dotenv
 import os
 from pathlib import Path
+
+
 load_dotenv()
+if not os.environ.get("RIOT_API_KEY"):
+    raise PermissionError("No API key found; please provide an API key in the .env file.")
 
 lol_watcher = LolWatcher(os.environ["RIOT_API_KEY"])
 my_region = 'na1'
